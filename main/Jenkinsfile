@@ -13,7 +13,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    bat 'PES2UG22CS149'  // Run compiled program
+                    bat 'PES2UG22CS149'  // Run compiled progra
                 }
             }
         }
