@@ -1,11 +1,11 @@
 pipeline {
-    agent any
+    agent any  // RUN on any available agent
 
     stages {
         stage('Build') {
             steps {
                 script {
-                    bat 'g++ -o PES2UG22CS149 hello1.cpp'  // Compile hello1.cpp
+                    sh 'g++ -o hello1_exec hello1.cpp'  // Compile the C++ file
                 }
             }
         }
@@ -13,23 +13,21 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    bat 'PES2UG22CS149'  // Run the compiled executable
+                    sh './hello1_exec'  // Execute the compiled program
                 }
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying application...'  // Placeholder for deployment
+                echo "Deploy step - Add actual deployment commands here"
             }
         }
     }
 
     post {
         failure {
-            script {
-                echo 'Pipeline failed'  // Display error message if pipeline fails
-            }
+            echo "Pipeline failed"  // Display message if pipeline fails
         }
     }
 }
