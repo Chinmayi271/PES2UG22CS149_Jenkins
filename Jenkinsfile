@@ -1,14 +1,13 @@
 pipeline {
     agent any  // RUN on any available agent
 
-    stages {
-        stage('Build') {
-            steps {
-                script {
-                    sh 'g++ -o hello1_exec hello1.cpp'  // Compile the C++ file
-                }
-            }
+   stage('Build') {
+    steps {
+        script {
+            sh 'gpp -o hello1_exec hello1.cpp'  // Intentional error: 'gpp' instead of 'g++'
         }
+    }
+}
 
         stage('Test') {
             steps {
