@@ -1,13 +1,14 @@
 pipeline {
-    agent any  // RUN on any available agent
+    agent any  // Run on any available agent
 
-   stage('Build') {
-    steps {
-        script {
-            sh 'gpp -o hello1_exec hello1.cpp'  // Intentional error: 'gpp' instead of 'g++'
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    sh 'g+ -o hello1_exec hello1.cpp'  //instead of g++
+                }
+            }
         }
-    }
-}
 
         stage('Test') {
             steps {
@@ -26,7 +27,7 @@ pipeline {
 
     post {
         failure {
-            echo "Pipeline failed"  // Display message if pipeline fails
+            echo "Pipeline failed!"  // Display message if pipeline fails
         }
     }
 }
