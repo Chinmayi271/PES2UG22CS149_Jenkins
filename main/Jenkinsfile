@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh 'g++ -o PES2UG22CS149-1 hello1.cpp'  // Compile C++ file
+                    bat 'g++ -o PES2UG22CS149 hello1.cpp'  // Compile C++ file (for Windows)
                 }
             }
         }
@@ -13,21 +13,23 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    sh './PES2UG22CS149-1'  // Run the compiled C++ program
+                    bat 'PES2UG22CS149'  // Run compiled program
                 }
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying application...'  // Simulating deployment
+                echo 'Deploying application...'  // Placeholder
             }
         }
     }
 
     post {
         failure {
-            echo 'Pipeline failed'  // Error handling
+            script {
+                echo 'Pipeline failed'
+            }
         }
     }
 }
